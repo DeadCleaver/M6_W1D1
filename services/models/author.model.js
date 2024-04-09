@@ -25,7 +25,7 @@ const authorSchema = new Schema (
 },
 
 {
-    collection: "authors",
+    collection: "test",
 }
 );
 

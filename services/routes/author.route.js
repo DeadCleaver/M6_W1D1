@@ -3,10 +3,6 @@ import Author from "../models/author.model.js";
 
 export const authorRoute = Router();
 
-/* authorRoute.get("/", async (req, res) => {
-    res.send("Sei al route principale dell'api");
-  }); */
-
 authorRoute.get("/", async (req, res, next) => {
     try {
       const authors = await Author.find();
