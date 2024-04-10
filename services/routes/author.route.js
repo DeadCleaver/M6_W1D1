@@ -22,3 +22,12 @@ authorRoute.get("/", async (req, res, next) => {
       next(err);
     }
   });
+
+  authorRoute.get("/:id", async (req, res, next) => {
+    try {
+      let author = await Author.findById(req.params.id);
+      res.send(author);
+    } catch (err) {
+      next(err);
+    }
+  });
