@@ -4,29 +4,25 @@ const authorSchema = new Schema (
     {
     name: {
         type: String,
-        required: true
+        required: true,
     },
     lastname: {
         type: String,
-        required: true
+        required: true,
     },
     email: {
         type: String,
-        required: true
+        required: true,
     },
     birthdate: {
         type: Date,
-        required: true
+        required: true,
     },
     avatar: {
         type: String,
-        required: true
+        required: true,
     }
 },
-
-{
-    collection: "test",
-}
 );
 
 export default model("Author", authorSchema);
