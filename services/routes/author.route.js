@@ -47,6 +47,16 @@ authorRoute.get("/", async (req, res, next) => {
   });
 
   /* richiesta PUT di un singolo autore */
-
+  authorRoute.put("/:id", async (req, res, next) => {
+    try {
+      let author = await Author.findByIdAndUpdate(req.params.id, req.body, {
+        new: true, 
+      });
+      res.send(author);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
   
 

@@ -1,24 +1,21 @@
-/* const express = require('express')*/
 import express from "express";
-/* const mongoose = require('mongoose'); */
 import mongoose from "mongoose";
-/* require(`dotenv`).config() */
 import { config } from "dotenv";
 import { authorRoute } from './services/routes/author.route.js';
-
-/* app.get('/', (req, res) => {
-  res.send('Hello World!')
-}) */
+import { blogpostRoute } from "./services/routes/blogpost.route.js";
+import cors from "cors";
 
 config();
 
 const app = express()
 const port = process.env.PORT || 3001;
+app.use(cors());
 
 app.use(express.json());
 
 app.use("/authors", authorRoute);
 
+app.use("/blogPosts", blogpostRoute);
 
 const initserver = async () => {
     try {
