@@ -1,5 +1,8 @@
 import { Router } from "express";
 import Author from "../models/author.model.js";
+/* import cloudinaryMiddleware from "../middlewares/multer.js" 
+ */
+import { uploadAvatar } from "../middlewares/multer.js";
 
 export const authorRoute = Router();
 
@@ -57,6 +60,20 @@ authorRoute.get("/", async (req, res, next) => {
       next(err);
     }
   });
+
+  /* richiesta PATCH per l'immagine avatar dell'autore */
+  authorRoute.patch("/:id/avatar", uploadAvatar, async (req, res, next) => {
+    try {
+      let updatedAuthor = await  Author.findByIdAndUpdate(
+        req.params.id,
+        {avatar: req.file.path},
+        {new: true}
+      )
+      res.send(updatedAuthor);
+    } catch(err) {
+      next(err);
+    }
+  })
   
   
 

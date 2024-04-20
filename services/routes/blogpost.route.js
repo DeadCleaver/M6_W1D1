@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Blogpost from "../models/blogpost.model.js";
+import { uploadCover } from "../middlewares/multer.js";
 
 export const blogpostRoute = Router();
 
@@ -56,3 +57,21 @@ blogpostRoute.get("/", async (req, res, next) => {
       next(err);
     }
   });
+
+   /* richiesta PATCH per l'immagine cover del post */
+   blogpostRoute.patch("/:id/cover", uploadCover, async (req, res, next) => {
+    try {
+      let updatedCover = await  Blogpost.findByIdAndUpdate(
+        req.params.id,
+        {cover: req.file.path},
+        {new: true}
+      )
+      res.send(updatedCover);
+    } catch(err) {
+      next(err);
+    }
+  })
+  
+
+
+
